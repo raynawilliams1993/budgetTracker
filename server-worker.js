@@ -71,4 +71,5 @@ self.addEventListener("fetch", function (evt) {
         caches.match(evt.request).then(function (response) {
             return response || fetch(evt.request);
         })
-    );
+);
+});
