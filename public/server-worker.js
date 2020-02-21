@@ -1,4 +1,3 @@
-
 const FILES_TO_CACHE = [
     '/',
     '/index.js',
@@ -8,7 +7,7 @@ const FILES_TO_CACHE = [
 const CACHE_NAME = "static-cache-v2";
 const DATA_CACHE_NAME = "data-cache-v1";
 
-
+//install
 self.addEventListener("install", function (evt) {
     evt.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
@@ -17,30 +16,10 @@ self.addEventListener("install", function (evt) {
         })
     );
 
-    // self.skipWaiting();
 });
-
-// self.addEventListener("activate", function (evt) {
-//     evt.waitUntil(
-//         caches.keys().then(keyList => {
-//             return Promise.all(
-//                 keyList.map(key => {
-//                     if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
-//                         console.log("Removing old cache data", key);
-//                         return caches.delete(key);
-//                     }
-//                 })
-//             );
-//         })
-//     );
-
-//     self.clients.claim();
-// });
 
 // fetch
 self.addEventListener("fetch", function (evt) {
-    // cache successful requests to the API
-
     evt.respondWith(
         fetch(evt.request).catch(function () {
             return caches.match(evt.request).then(function (res) {
